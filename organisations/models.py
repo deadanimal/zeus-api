@@ -6,7 +6,7 @@ from django.utils.formats import get_format
 from django.contrib.gis.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-from piperapi.helpers import PathAndRename
+from zeusapi.helpers import PathAndRename
 
 
 class Organisation(models.Model):

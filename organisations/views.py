@@ -60,3 +60,21 @@ class OrganisationViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
 
         serializer =  OrganisationSerializer(organisation)
         return Response(serializer.data)        
+
+
+    @action(methods=['GET'], detail=False)
+    def lol(self, request, *args, **kwargs):
+        from django.core.files.storage import default_storage
+        file = default_storage.open('storage_test', 'w')
+        file.write('storage contents')
+        file.close()
+        print(default_storage.exists('storage_test'))
+        file = default_storage.open('storage_test', 'r')
+        print(file.read())
+        file.close()
+
+
+        return 'lol'
+        #target_user = int(kwargs['target_id'])
+        #Follow.objects.create(user=user, target=target_user)
+        #return Response(status=status.HTTP_204_NO_CONTENT)            

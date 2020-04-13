@@ -13,6 +13,7 @@ class CustomUser(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(blank=True, max_length=255)
 
+    """
     USER_TYPE = [
 
         ('NA', 'Not Available'),   
@@ -38,6 +39,6 @@ class CustomUser(AbstractUser):
         choices=EMPLOYEE_TYPE,
         default='NA',
     )    
-
+    """
     def __str__(self):
         return self.name
