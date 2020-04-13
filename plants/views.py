@@ -12,17 +12,17 @@ from rest_framework_extensions.mixins import NestedViewSetMixin
 from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import (
-    Reading, 
+    Plant, 
 )
 
 from .serializers import (
-    ReadingSerializer, 
+    PlantSerializer, 
 )
 
 
-class ReadingViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
-    queryset = Reading.objects.all()
-    serializer_class = ReadingSerializer
+class PlantViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
+    queryset = Plant.objects.all()
+    serializer_class = PlantSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     def get_permissions(self):
@@ -35,7 +35,7 @@ class ReadingViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
 
     
     def get_queryset(self):
-        queryset = Reading.objects.all()
+        queryset = Plant.objects.all()
         return queryset  
           
 

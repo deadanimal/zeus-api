@@ -50,6 +50,7 @@ users_router = router.register(
     'users', CustomUserViewSet
 )
 
+from accounts.views import (AccountViewSet)
 from aimodels.views import (AimodelViewSet)
 from appliances.views import (ApplianceViewSet)
 from bills.views import (BillViewSet)
@@ -57,8 +58,13 @@ from buildings.views import (BuildingViewSet)
 from devices.views import (DeviceViewSet)
 from goals.views import (GoalViewSet)
 from notifications.views import (NotificationViewSet)
-from readings.views import (ReadingViewSet)
+from plants.views import (PlantViewSet)
 from tickets.views import (TicketViewSet)
+
+
+accounts_router = router.register(
+    'accounts', AccountViewSet
+)
 
 aimodels_router = router.register(
     'aimodels', AimodelViewSet
@@ -88,8 +94,8 @@ notifications_router = router.register(
     'notifications', NotificationViewSet
 )
 
-readings_router = router.register(
-    'readings', ReadingViewSet
+plants_router = router.register(
+    'plants', PlantViewSet
 )
 
 tickets_router = router.register(

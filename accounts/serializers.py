@@ -12,12 +12,12 @@ from django.utils.timezone import now
 
 
 from .models import (
-    Reading
+    Account
 )
 
 
-class ReadingSerializer(serializers.ModelSerializer):
+class AccountSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Reading
+        model = Account
         fields = '__all__'

@@ -1,6 +1,10 @@
 
+
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.db.models import Q
+
+from django.core.files.storage import default_storage
 
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
@@ -20,6 +24,11 @@ from .serializers import (
 )
 
 
+
+appliance_detection_model = default_storage.open('aimodels/appliance_detection.pkl', 'r')
+
+
+
 class AimodelViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     queryset = Aimodel.objects.all()
     serializer_class = AimodelSerializer
@@ -37,12 +46,26 @@ class AimodelViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = Aimodel.objects.all()
         return queryset  
-          
 
 
+    @action(methods=['POST'], detail=False)
+    def predict(self, request, *args, **kwargs):    
+
+        file_sent = request.data
+        params = request.query_params
+
+        if params['model'] == 'appliance':
+            print('appliance')
+        
+        message = {'app': 123}
+        
+        return JsonResponse(message)              
+
+
+    """
     @action(methods=['GET'], detail=False)
     def lol(self, request, *args, **kwargs):
-        """
+
         from django.core.files.storage import default_storage
         file = default_storage.open('storage_test', 'w')
         file.write('storage contents')
@@ -51,9 +74,9 @@ class AimodelViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         file = default_storage.open('storage_test', 'r')
         print(file.read())
         file.close()
-        """
 
         return 'lol'
         #target_user = int(kwargs['target_id'])
         #Follow.objects.create(user=user, target=target_user)
         #return Response(status=status.HTTP_204_NO_CONTENT)            
+    """

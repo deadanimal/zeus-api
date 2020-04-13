@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'simple_history',
 
-
+    'accounts',
     'aimodels',
     'appliances',
     'bills',
@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'goals',
     'notifications',
     'organisations',
-    'readings',
+    'plants',
     'tickets',
     'users'
 

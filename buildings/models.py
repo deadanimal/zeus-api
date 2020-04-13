@@ -13,8 +13,9 @@ class Building(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(blank=False, max_length=255)
-
-    active = models.BooleanField(default=True)
+    
+    address = models.CharField(null=True, max_length=255)
+    location = models.PointField(null=True)
 
     def __str__(self):
         return self.name

@@ -8,6 +8,10 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
+class UserSettings(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(blank=True, max_length=255)
+
 
 class CustomUser(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
