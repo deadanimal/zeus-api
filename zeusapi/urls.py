@@ -50,6 +50,52 @@ users_router = router.register(
     'users', CustomUserViewSet
 )
 
+from aimodels.views import (AimodelViewSet)
+from appliances.views import (ApplianceViewSet)
+from bills.views import (BillViewSet)
+from buildings.views import (BuildingViewSet)
+from devices.views import (DeviceViewSet)
+from goals.views import (GoalViewSet)
+from notifications.views import (NotificationViewSet)
+from readings.views import (ReadingViewSet)
+from tickets.views import (TicketViewSet)
+
+aimodels_router = router.register(
+    'aimodels', AimodelViewSet
+)
+
+appliances_router = router.register(
+    'appliances', ApplianceViewSet
+)
+
+bills_router = router.register(
+    'bills', BillViewSet
+)
+
+buildings_router = router.register(
+    'buildings', BuildingViewSet
+)
+
+devices_router = router.register(
+    'devices', DeviceViewSet
+)
+
+goals_router = router.register(
+    'goals', GoalViewSet
+)
+
+notifications_router = router.register(
+    'notifications', NotificationViewSet
+)
+
+readings_router = router.register(
+    'readings', ReadingViewSet
+)
+
+tickets_router = router.register(
+    'tickets', TicketViewSet
+)
+
 
 
 
