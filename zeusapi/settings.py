@@ -26,6 +26,7 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 
 
 ALLOWED_HOSTS = [
+    'zeus.pipe.my',
     'pipe-zeus-api.herokuapp.com',
     '127.0.0.1',
     'localhost'
