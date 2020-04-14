@@ -25,6 +25,18 @@ from .serializers import (
     ApplianceTransactionSerializer
 )
 
+from accounts.models import (
+    Account
+)
+
+from organisations.models import (
+    Organisation
+)
+
+from users.models import (
+    CustomUser
+)
+
 
 class ApplianceViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     queryset = Appliance.objects.all()
@@ -43,10 +55,20 @@ class ApplianceViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
 
     
     def get_queryset(self):
+
         user = self.request.user
-        print(user.username)
-        #company_employee = CompanyEmployee.objects.filter(employee=user).first()
-        queryset = Appliance.objects.all()
+
+        if user.user_type == 'SU':
+            queryset = Appliance.objects.all()
+        elif user.user_type == 'LV':
+            pass
+        elif user.user_type == 'HT':
+            pass
+        elif user.user_type == 'UT':
+            pass                
+        else:
+            queryset = Appliance.objects.none()
+        
         return queryset  
           
 
@@ -85,7 +107,20 @@ class ApplianceBaseViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
 
     
     def get_queryset(self):
-        queryset = ApplianceBase.objects.all()
+
+        user = self.request.user
+
+        if user.user_type == 'SU':
+            queryset = ApplianceBase.objects.all()
+        elif user.user_type == 'LV':
+            pass
+        elif user.user_type == 'HT':
+            pass
+        elif user.user_type == 'UT':
+            pass                
+        else:
+            queryset = ApplianceBase.objects.none()
+
         return queryset  
 
 
@@ -124,7 +159,18 @@ class ApplianceTransactionViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
 
     
     def get_queryset(self):
-        queryset = ApplianceTransaction.objects.all()
+        user = self.request.user
+
+        if user.user_type == 'SU':
+            queryset = ApplianceTransaction.objects.all()
+        elif user.user_type == 'LV':
+            pass
+        elif user.user_type == 'HT':
+            pass
+        elif user.user_type == 'UT':
+            pass                
+        else:
+            queryset = ApplianceTransaction.objects.none()        
         return queryset          
 
 

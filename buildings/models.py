@@ -15,6 +15,8 @@ class Building(models.Model):
     name = models.CharField(blank=False, max_length=255)
     
     address = models.CharField(null=True, max_length=255)
+    
+    area = models.PolygonField(null=True)
     location = models.PointField(null=True)
 
     def __str__(self):

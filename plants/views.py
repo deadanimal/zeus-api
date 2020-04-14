@@ -37,7 +37,18 @@ class PlantViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
 
     
     def get_queryset(self):
-        queryset = Plant.objects.all()
+        user = self.request.user
+
+        if user.user_type == 'SU':
+            queryset = Plant.objects.all()
+        elif user.user_type == 'LV':
+            pass
+        elif user.user_type == 'HT':
+            pass
+        elif user.user_type == 'UT':
+            pass                
+        else:
+            queryset = Plant.objects.none()        
         return queryset  
           
 

@@ -37,7 +37,19 @@ class BuildingViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
 
     
     def get_queryset(self):
-        queryset = Building.objects.all()
+        user = self.request.user
+
+        if user.user_type == 'SU':
+            queryset = Building.objects.all()
+        elif user.user_type == 'LV':
+            pass
+        elif user.user_type == 'HT':
+            pass
+        elif user.user_type == 'UT':
+            pass                
+        else:
+            queryset = Building.objects.none()        
+
         return queryset  
           
 

@@ -38,7 +38,19 @@ class AccountViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
 
     
     def get_queryset(self):
-        queryset = Account.objects.all()
+        user = self.request.user
+
+        if user.user_type == 'SU':
+            queryset = Account.objects.all()
+        elif user.user_type == 'LV':
+            pass
+        elif user.user_type == 'HT':
+            pass
+        elif user.user_type == 'UT':
+            pass                
+        else:
+            queryset = Account.objects.none()
+
         return queryset  
           
 
