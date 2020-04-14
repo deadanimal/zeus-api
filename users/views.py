@@ -45,10 +45,13 @@ class CustomUserViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     def get_permissions(self):
+        permission_classes = [IsAuthenticated]
+        """
         if self.action == 'list':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         else:
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
+        """
 
         return [permission() for permission in permission_classes]    
 

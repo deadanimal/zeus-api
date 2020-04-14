@@ -1,3 +1,5 @@
+import jwt
+
 
 from django.shortcuts import render
 from django.db.models import Q
@@ -30,15 +32,20 @@ class ApplianceViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     def get_permissions(self):
+        permission_classes = [IsAuthenticated]
+        """
         if self.action == 'list':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         else:
-            permission_classes = [AllowAny]
-
+            permission_classes = [IsAuthenticated]
+        """
         return [permission() for permission in permission_classes]    
 
     
     def get_queryset(self):
+        user = self.request.user
+        print(user.username)
+        #company_employee = CompanyEmployee.objects.filter(employee=user).first()
         queryset = Appliance.objects.all()
         return queryset  
           
@@ -67,17 +74,20 @@ class ApplianceBaseViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     def get_permissions(self):
+        permission_classes = [IsAuthenticated]
+        """
         if self.action == 'list':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         else:
-            permission_classes = [AllowAny]
-
+            permission_classes = [IsAuthenticated]
+        """
         return [permission() for permission in permission_classes]    
 
     
     def get_queryset(self):
         queryset = ApplianceBase.objects.all()
         return queryset  
+
 
     @action(methods=['GET'], detail=True)
     def activate(self, request, *args, **kwargs):
@@ -103,11 +113,13 @@ class ApplianceTransactionViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     def get_permissions(self):
+        permission_classes = [IsAuthenticated]
+        """
         if self.action == 'list':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         else:
-            permission_classes = [AllowAny]
-
+            permission_classes = [IsAuthenticated]
+        """
         return [permission() for permission in permission_classes]    
 
     

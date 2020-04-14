@@ -41,6 +41,7 @@ class Appliance(models.Model):
     def __str__(self):
         return self.name    
 
+
 class ApplianceTransaction(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -57,3 +58,6 @@ class ApplianceTransaction(models.Model):
         choices=STATUS,
         default='NA',
     )    
+
+    def __str__(self):
+        return self.transaction_datetime    
