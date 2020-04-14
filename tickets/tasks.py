@@ -5,7 +5,7 @@ from celery.task.schedules import crontab
 
 import requests
 
-@periodic_task(run_every=(crontab(minute="*/5")), name="check_flespi_galileosky_events", ignore_result=True)
+@periodic_task(run_every=(crontab()), name="check_flespi_galileosky_events", ignore_result=True)
 def lol():
 
     asd = 'Running'
