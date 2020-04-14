@@ -52,14 +52,19 @@ users_router = router.register(
 
 from accounts.views import (AccountViewSet)
 from aimodels.views import (AimodelViewSet)
-from appliances.views import (ApplianceViewSet)
+from appliances.views import (
+    ApplianceViewSet,
+    ApplianceBaseViewSet,
+    ApplianceTransactionViewSet)
 from bills.views import (BillViewSet)
 from buildings.views import (BuildingViewSet)
 from devices.views import (DeviceViewSet)
 from goals.views import (GoalViewSet)
 from notifications.views import (NotificationViewSet)
 from plants.views import (PlantViewSet)
-from tickets.views import (TicketViewSet)
+from tickets.views import (
+    TicketViewSet,
+    TicketMessageViewSet)
 
 
 accounts_router = router.register(
@@ -73,6 +78,18 @@ aimodels_router = router.register(
 appliances_router = router.register(
     'appliances', ApplianceViewSet
 )
+
+appliances_router.register(
+   'transactions',
+   ApplianceTransactionViewSet,
+   basename='appliance-transaction',
+   parents_query_lookups=['to_it']
+)
+
+base_appliances_router = router.register(
+    'base-appliances', ApplianceBaseViewSet
+)
+
 
 bills_router = router.register(
     'bills', BillViewSet
@@ -100,6 +117,13 @@ plants_router = router.register(
 
 tickets_router = router.register(
     'tickets', TicketViewSet
+)
+
+tickets_router.register(
+   'messages',
+   TicketMessageViewSet,
+   basename='ticket-messages',
+   parents_query_lookups=['to_it']
 )
 
 

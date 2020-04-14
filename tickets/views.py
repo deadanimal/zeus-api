@@ -13,10 +13,12 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import (
     Ticket, 
+    TicketMessage, 
 )
 
 from .serializers import (
     TicketSerializer, 
+    TicketMessageSerializer, 
 )
 
 
@@ -57,3 +59,25 @@ class TicketViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         #target_user = int(kwargs['target_id'])
         #Follow.objects.create(user=user, target=target_user)
         #return Response(status=status.HTTP_204_NO_CONTENT)            
+
+
+
+
+
+class TicketMessageViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
+    queryset = TicketMessage.objects.all()
+    serializer_class = TicketMessageSerializer
+    filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
+
+    def get_permissions(self):
+        if self.action == 'list':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [AllowAny]
+
+        return [permission() for permission in permission_classes]    
+
+    
+    def get_queryset(self):
+        queryset = TicketMessage.objects.all()
+        return queryset          

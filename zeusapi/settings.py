@@ -46,10 +46,14 @@ INSTALLED_APPS = [
 
     'anymail',
     'allauth',
+    'allauth.account',
+    'rest_auth.registration',    
     'corsheaders',
     'mail_templated',
     'phonenumber_field',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
     'simple_history',
 
     'accounts',

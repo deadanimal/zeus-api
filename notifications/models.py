@@ -8,13 +8,20 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 from zeusapi.helpers import PathAndRename
 
+from users.models import CustomUser
+
 
 class Notification(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(blank=False, max_length=255)
+    message = models.CharField(blank=False, max_length=255)
 
-    active = models.BooleanField(default=True)
+    created = models.BooleanField(default=True)
+    sent = models.BooleanField(default=False)
+    read = models.BooleanField(default=False)
+
+    receiver = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
+
 
     def __str__(self):
-        return self.name
+        return self.message

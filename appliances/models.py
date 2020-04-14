@@ -14,11 +14,13 @@ from buildings.models import (Building)
 class ApplianceBase(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
+    active = models.BooleanField(default=True)
     
-    brand = models.CharField(blank=False, max_length=255)
-    model = models.CharField(blank=True, max_length=255)
-    year = models.CharField(blank=True, max_length=255)
-    manufacturer = models.CharField(blank=True, max_length=255)
+    brand = models.CharField(null=True, max_length=255)
+    model = models.CharField(null=True, max_length=255)
+    year = models.CharField(null=True, max_length=255)
+    manufacturer = models.CharField(null=True, max_length=255)
 
     def __str__(self):
         name_string = self.brand + '-' + self.model + '-' + self.year
@@ -28,6 +30,8 @@ class Appliance(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(blank=False, max_length=255)
+
+    active = models.BooleanField(default=True)
 
     account = models.ForeignKey(Account, on_delete=models.CASCADE, null=True)
     building = models.ForeignKey(Building, on_delete=models.CASCADE, null=True)
@@ -43,6 +47,7 @@ class ApplianceTransaction(models.Model):
     transaction_datetime = models.DateTimeField(null=True)
     
     appliance = models.ForeignKey(Appliance, on_delete=models.CASCADE, null=True)
+
     STATUS = [
         ('NA', 'Not Available'),   
     ] 

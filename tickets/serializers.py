@@ -12,7 +12,8 @@ from django.utils.timezone import now
 
 
 from .models import (
-    Ticket
+    Ticket,
+    TicketMessage
 )
 
 
@@ -21,3 +22,9 @@ class TicketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticket
         fields = '__all__'
+
+class TicketMessageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = TicketMessage
+        fields = '__all__'        

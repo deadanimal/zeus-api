@@ -47,11 +47,7 @@ class OrganisationViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         organisation.active = True
 
         serializer =  OrganisationSerializer(organisation)
-        #OrSerializer(data=request.data)
-        return Response(serializer.data)
-        #target_user = int(kwargs['target_id'])
-        #Follow.objects.create(user=user, target=target_user)
-        #return Response(status=status.HTTP_204_NO_CONTENT)        
+        return Response(serializer.data)   
 
     @action(methods=['GET'], detail=True)
     def deactivate(self, request, *args, **kwargs):

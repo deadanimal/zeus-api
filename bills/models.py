@@ -20,8 +20,13 @@ class Bill(models.Model):
 
     status = models.CharField(blank=False, max_length=255, default='NA')
 
+    bill_generated = models.BooleanField(default=True)
+    bill_invoiced = models.BooleanField(default=False)
+    bill_due_date = models.BooleanField(default=False)
+    bill_paid = models.BooleanField(default=False)    
+
     date_generated = models.DateTimeField(default=django.utils.timezone.now)
-    date_invoiced = models.DateTimeField(default=django.utils.timezone.now)
+    date_invoice_sent = models.DateTimeField(default=django.utils.timezone.now)
     date_due_date = models.DateTimeField(default=django.utils.timezone.now)
     date_paid = models.DateTimeField(default=django.utils.timezone.now)
 

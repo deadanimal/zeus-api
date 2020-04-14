@@ -16,6 +16,10 @@ class Ticket(models.Model):
     name = models.CharField(blank=False, max_length=255)
 
     active = models.BooleanField(default=True)
+    solved = models.BooleanField(default=False)
+
+    sender = models.ForeignKey(CustomUser, null=True, on_delete=models.CASCADE, related_name='ticket_sender')
+    receiver = models.ForeignKey(CustomUser, null=True, on_delete=models.CASCADE, related_name='ticket_receiver')
 
     TICKET_TYPE = [
 
@@ -51,5 +55,5 @@ class TicketMessage(models.Model):
     received_datetime = models.DateTimeField(null=True)
     read_datetime = models.DateTimeField(null=True)
 
-    sender = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='ticket_message_sender')
-    receiver = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='ticket_message_receiver')
+    sender = models.ForeignKey(CustomUser, null=True, on_delete=models.CASCADE, related_name='ticket_message_sender')
+    receiver = models.ForeignKey(CustomUser, null=True, on_delete=models.CASCADE, related_name='ticket_message_receiver')

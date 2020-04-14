@@ -41,19 +41,65 @@ class NotificationViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
 
 
     @action(methods=['GET'], detail=False)
-    def lol(self, request, *args, **kwargs):
-        """
-        from django.core.files.storage import default_storage
-        file = default_storage.open('storage_test', 'w')
-        file.write('storage contents')
-        file.close()
-        print(default_storage.exists('storage_test'))
-        file = default_storage.open('storage_test', 'r')
-        print(file.read())
-        file.close()
-        """
+    def read(self, request, *args, **kwargs):
+        read_notification = Notification.objects.all().filter(read=True)
 
-        return 'lol'
-        #target_user = int(kwargs['target_id'])
-        #Follow.objects.create(user=user, target=target_user)
-        #return Response(status=status.HTTP_204_NO_CONTENT)            
+        page = self.paginate_queryset(read_notification)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(read_notification, many=True)
+        return Response(serializer.data)          
+
+    @action(methods=['GET'], detail=False)
+    def unread(self, request, *args, **kwargs):
+        unread_notification = Notification.objects.all().filter(read=False)
+
+        page = self.paginate_queryset(unread_notification)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(unread_notification, many=True)
+        return Response(serializer.data)      
+
+    @action(methods=['GET'], detail=True)
+    def mark_read(self, request, *args, **kwargs):
+        notification = self.get_object()
+        notification.read = True
+
+        serializer =  NotificationSerializer(notification)
+        return Response(serializer.data)   
+
+    @action(methods=['GET'], detail=True)
+    def mark_unread(self, request, *args, **kwargs):
+        notification = self.get_object()
+        notification.read = False
+
+        serializer =  NotificationSerializer(notification)
+        return Response(serializer.data)      
+
+    @action(methods=['GET'], detail=False)
+    def sent(self, request, *args, **kwargs):
+        sent_notification = Notification.objects.all().filter(sent=True)
+
+        page = self.paginate_queryset(sent_notification)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(sent_notification, many=True)
+        return Response(serializer.data)          
+
+    @action(methods=['GET'], detail=False)
+    def unsent(self, request, *args, **kwargs):
+        unsent_notification = Notification.objects.all().filter(sent=False)
+
+        page = self.paginate_queryset(unsent_notification)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(unsent_notification, many=True)
+        return Response(serializer.data)        

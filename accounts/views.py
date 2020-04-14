@@ -39,10 +39,27 @@ class AccountViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         return queryset  
           
 
+    @action(methods=['GET'], detail=True)
+    def activate(self, request, *args, **kwargs):
+        account = self.get_object()
+        account.active = True
 
+        serializer =  AccountSerializer(account)
+        return Response(serializer.data)   
+
+    @action(methods=['GET'], detail=True)
+    def deactivate(self, request, *args, **kwargs):
+        account = self.get_object()
+        account.active = False
+
+        serializer =  AccountSerializer(account)
+        return Response(serializer.data)                    
+
+
+"""
     @action(methods=['GET'], detail=False)
     def lol(self, request, *args, **kwargs):
-        """
+
         from django.core.files.storage import default_storage
         file = default_storage.open('storage_test', 'w')
         file.write('storage contents')
@@ -51,9 +68,9 @@ class AccountViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         file = default_storage.open('storage_test', 'r')
         print(file.read())
         file.close()
-        """
 
         return 'lol'
         #target_user = int(kwargs['target_id'])
         #Follow.objects.create(user=user, target=target_user)
         #return Response(status=status.HTTP_204_NO_CONTENT)            
+"""
