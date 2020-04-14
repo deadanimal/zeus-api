@@ -46,7 +46,19 @@ class AimodelViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
 
     
     def get_queryset(self):
-        queryset = Aimodel.objects.all()
+        user = self.request.user
+
+        if user.user_type == 'SU':
+            queryset = Aimodel.objects.all()
+        elif user.user_type == 'LV':
+            queryset = Aimodel.objects.all()
+        elif user.user_type == 'HT':
+            queryset = Aimodel.objects.all()
+        elif user.user_type == 'UT':
+            queryset = Aimodel.objects.all()                
+        else:
+            queryset = Aimodel.objects.none()        
+    
         return queryset  
 
 

@@ -42,11 +42,11 @@ class NotificationViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         if user.user_type == 'SU':
             queryset = Notification.objects.all()
         elif user.user_type == 'LV':
-            pass
+            queryset = Notification.objects.all()
         elif user.user_type == 'HT':
-            pass
+            queryset = Notification.objects.all()
         elif user.user_type == 'UT':
-            pass                
+            queryset = Notification.objects.all()                
         else:
             queryset = Notification.objects.none()
 

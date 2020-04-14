@@ -42,11 +42,11 @@ class BuildingViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         if user.user_type == 'SU':
             queryset = Building.objects.all()
         elif user.user_type == 'LV':
-            pass
+            queryset = Building.objects.all()
         elif user.user_type == 'HT':
-            pass
+            queryset = Building.objects.all()
         elif user.user_type == 'UT':
-            pass                
+            queryset = Building.objects.all()                
         else:
             queryset = Building.objects.none()        
 

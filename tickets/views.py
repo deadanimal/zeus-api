@@ -44,11 +44,11 @@ class TicketViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         if user.user_type == 'SU':
             queryset = Ticket.objects.all()
         elif user.user_type == 'LV':
-            pass
+            queryset = Ticket.objects.all()
         elif user.user_type == 'HT':
-            pass
+            queryset = Ticket.objects.all()
         elif user.user_type == 'UT':
-            pass                
+            queryset = Ticket.objects.all()                
         else:
             queryset = Ticket.objects.none()        
         return queryset  
@@ -99,11 +99,11 @@ class TicketMessageViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         if user.user_type == 'SU':
             queryset = TicketMessage.objects.all()
         elif user.user_type == 'LV':
-            pass
+            queryset = TicketMessage.objects.all()
         elif user.user_type == 'HT':
-            pass
+            queryset = TicketMessage.objects.all()
         elif user.user_type == 'UT':
-            pass                
+            queryset = TicketMessage.objects.all()                
         else:
             queryset = TicketMessage.objects.none()        
         return queryset          

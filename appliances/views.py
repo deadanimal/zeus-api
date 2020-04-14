@@ -61,11 +61,11 @@ class ApplianceViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         if user.user_type == 'SU':
             queryset = Appliance.objects.all()
         elif user.user_type == 'LV':
-            pass
+            queryset = Appliance.objects.all()
         elif user.user_type == 'HT':
-            pass
+            queryset = Appliance.objects.all()
         elif user.user_type == 'UT':
-            pass                
+            queryset = Appliance.objects.all()                
         else:
             queryset = Appliance.objects.none()
         
@@ -113,11 +113,11 @@ class ApplianceBaseViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         if user.user_type == 'SU':
             queryset = ApplianceBase.objects.all()
         elif user.user_type == 'LV':
-            pass
+            queryset = ApplianceBase.objects.all()
         elif user.user_type == 'HT':
-            pass
+            queryset = ApplianceBase.objects.all()
         elif user.user_type == 'UT':
-            pass                
+            queryset = ApplianceBase.objects.all()                
         else:
             queryset = ApplianceBase.objects.none()
 

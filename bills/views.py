@@ -40,11 +40,11 @@ class BillViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         if user.user_type == 'SU':
             queryset = Bill.objects.all()
         elif user.user_type == 'LV':
-            pass
+            queryset = Bill.objects.all()
         elif user.user_type == 'HT':
-            pass
+            queryset = Bill.objects.all()
         elif user.user_type == 'UT':
-            pass                
+            queryset = Bill.objects.all()                
         else:
             queryset = Bill.objects.none()        
         return queryset  

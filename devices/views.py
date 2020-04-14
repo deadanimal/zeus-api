@@ -49,11 +49,11 @@ class DeviceViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         if user.user_type == 'SU':
             queryset = Device.objects.all()
         elif user.user_type == 'LV':
-            pass
+            queryset = Device.objects.all()
         elif user.user_type == 'HT':
-            pass
+            queryset = Device.objects.all()
         elif user.user_type == 'UT':
-            pass                
+            queryset = Device.objects.all()                
         else:
             queryset = Device.objects.none()
         return queryset  

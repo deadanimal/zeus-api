@@ -44,11 +44,11 @@ class OrganisationViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         if user.user_type == 'SU':
             queryset = Organisation.objects.all()
         elif user.user_type == 'LV':
-            pass
+            queryset = Organisation.objects.none()
         elif user.user_type == 'HT':
-            pass
+            queryset = Organisation.objects.none()
         elif user.user_type == 'UT':
-            pass                
+            queryset = Organisation.objects.all()                
         else:
             queryset = Organisation.objects.none()        
         return queryset  

@@ -42,11 +42,11 @@ class GoalViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         if user.user_type == 'SU':
             queryset = Goal.objects.all()
         elif user.user_type == 'LV':
-            pass
+            queryset = Goal.objects.all()
         elif user.user_type == 'HT':
-            pass
+            queryset = Goal.objects.all()
         elif user.user_type == 'UT':
-            pass                
+            queryset = Goal.objects.all()                
         else:
             queryset = Goal.objects.none()        
         return queryset  

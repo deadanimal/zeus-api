@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'anymail',
     'allauth',
     'allauth.account',
+    'background_task',
     'rest_auth.registration',    
     'corsheaders',
     'mail_templated',
@@ -203,7 +204,7 @@ CORS_ORIGIN_REGEX_WHITELIST = [
 ]
 
 AUTH_USER_MODEL = "users.CustomUser" 
-
+ACCOUNT_EMAIL_VERIFICATION = "none"
 SITE_ID = 1
 
 REST_USE_JWT = True
@@ -242,3 +243,10 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
+CELERY_BROKER_URL = config('CELERY_BROKER_URL')
+CELERY_RESULT_BACKEND = config('CELERY_RESULT_BACKEND')
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_BEAT_SCHEDULE = {}

@@ -42,11 +42,11 @@ class PlantViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         if user.user_type == 'SU':
             queryset = Plant.objects.all()
         elif user.user_type == 'LV':
-            pass
+            queryset = Plant.objects.all()
         elif user.user_type == 'HT':
-            pass
+            queryset = Plant.objects.all()
         elif user.user_type == 'UT':
-            pass                
+            queryset = Plant.objects.all()                
         else:
             queryset = Plant.objects.none()        
         return queryset  
