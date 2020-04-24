@@ -42,12 +42,16 @@ class AccountViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
 
         if user.user_type == 'SU':
             queryset = Account.objects.all()
+
         elif user.user_type == 'LV':
             queryset = Account.objects.all()
+
         elif user.user_type == 'HT':
             queryset = Account.objects.all()
+
         elif user.user_type == 'UT':
             queryset = Account.objects.all()
+
         else:
             queryset = Account.objects.none()
 
