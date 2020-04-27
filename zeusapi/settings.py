@@ -67,11 +67,14 @@ INSTALLED_APPS = [
     'appliances',
     'bills',
     'buildings',
+    'comprotocols',
     'devices',
+    'gateways',
     'goals',
     'notifications',
     'organisations',
     'plants',
+    'reports',
     'tickets',
     'users'
 
