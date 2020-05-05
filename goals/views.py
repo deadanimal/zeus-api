@@ -26,7 +26,7 @@ class GoalViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     def get_permissions(self):
-        permission_classes = [IsAuthenticated]
+        permission_classes = [AllowAny] #[IsAuthenticated]
         """
         if self.action == 'list':
             permission_classes = [IsAuthenticated]
@@ -38,7 +38,8 @@ class GoalViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     
     def get_queryset(self):
         user = self.request.user
-
+        queryset = Goal.objects.all()
+        """
         if user.user_type == 'SU':
             queryset = Goal.objects.all()
         elif user.user_type == 'LV':
@@ -48,7 +49,8 @@ class GoalViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         elif user.user_type == 'UT':
             queryset = Goal.objects.all()                
         else:
-            queryset = Goal.objects.none()        
+            queryset = Goal.objects.none()
+        """        
         return queryset  
           
 

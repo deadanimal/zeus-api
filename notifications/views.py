@@ -26,7 +26,7 @@ class NotificationViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     def get_permissions(self):
-        permission_classes = [IsAuthenticated]
+        permission_classes = [AllowAny] #permission_classes = [IsAuthenticated]
         """
         if self.action == 'list':
             permission_classes = [IsAuthenticated]
@@ -38,7 +38,8 @@ class NotificationViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     
     def get_queryset(self):
         user = self.request.user
-
+        queryset = Notification.objects.all()
+        """
         if user.user_type == 'SU':
             queryset = Notification.objects.all()
         elif user.user_type == 'LV':
@@ -49,7 +50,7 @@ class NotificationViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
             queryset = Notification.objects.all()                
         else:
             queryset = Notification.objects.none()
-
+        """
         return queryset  
           
 

@@ -31,8 +31,7 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 
 
 ALLOWED_HOSTS = [
-    'zeus.pipe.my',
-    'pipe-zeus-api.herokuapp.com',
+    'zeus-api.pipeline.com.my',
     '127.0.0.1',
     'localhost'
 ]
@@ -67,7 +66,6 @@ INSTALLED_APPS = [
     'appliances',
     'bills',
     'buildings',
-    'comprotocols',
     'devices',
     'gateways',
     'goals',

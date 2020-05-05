@@ -59,12 +59,15 @@ from appliances.views import (
 from bills.views import (BillViewSet)
 from buildings.views import (BuildingViewSet)
 from devices.views import (DeviceViewSet)
+from gateways.views import (GatewayViewSet)
 from goals.views import (GoalViewSet)
 from notifications.views import (NotificationViewSet)
 from plants.views import (PlantViewSet)
+from reports.views import (ReportViewSet)
 from tickets.views import (
     TicketViewSet,
     TicketMessageViewSet)
+from users.views import (CustomUserViewSet)
 
 
 accounts_router = router.register(
@@ -103,6 +106,10 @@ devices_router = router.register(
     'devices', DeviceViewSet
 )
 
+gateways_router = router.register(
+    'gateways', GatewayViewSet
+)
+
 goals_router = router.register(
     'goals', GoalViewSet
 )
@@ -113,6 +120,10 @@ notifications_router = router.register(
 
 plants_router = router.register(
     'plants', PlantViewSet
+)
+
+reports_router = router.register(
+    'reports', ReportViewSet
 )
 
 tickets_router = router.register(

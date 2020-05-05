@@ -26,7 +26,7 @@ class AccountViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     def get_permissions(self):
-        permission_classes = [IsAuthenticated]
+        permission_classes = [AllowAny]#[IsAuthenticated]
         """
         if self.action == 'list':
             permission_classes = [IsAuthenticated]
@@ -40,6 +40,8 @@ class AccountViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
 
+        queryset = Account.objects.all()
+        """
         if user.user_type == 'SU':
             queryset = Account.objects.all()
 
@@ -54,7 +56,7 @@ class AccountViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
 
         else:
             queryset = Account.objects.none()
-
+        """
         return queryset  
           
 

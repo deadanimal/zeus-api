@@ -12,7 +12,8 @@ from zeusapi.helpers import PathAndRename
 class Device(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(blank=False, max_length=255)
+    name = models.CharField(null=True, max_length=255)
+    label = models.CharField(null=True, max_length=255)
 
     active = models.BooleanField(default=True)
 

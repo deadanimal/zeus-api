@@ -26,17 +26,21 @@ class BillViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     def get_permissions(self):
-        permission_classes = [IsAuthenticated]
+        permission_classes = [AllowAny] #[IsAuthenticated]
+
         """
         if self.action == 'list':
             permission_classes = [IsAuthenticated]
         else:
             permission_classes = [IsAuthenticated]
         """
+        return [permission() for permission in permission_classes]
     
     def get_queryset(self):
         user = self.request.user
+        queryset = Bill.objects.all()
 
+        """
         if user.user_type == 'SU':
             queryset = Bill.objects.all()
         elif user.user_type == 'LV':
@@ -47,6 +51,7 @@ class BillViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
             queryset = Bill.objects.all()                
         else:
             queryset = Bill.objects.none()        
+        """
         return queryset  
           
 

@@ -33,7 +33,7 @@ class DeviceViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     def get_permissions(self):
-        permission_classes = [IsAuthenticated]
+        permission_classes = [AllowAny]#[IsAuthenticated]
         """
         if self.action == 'list':
             permission_classes = [IsAuthenticated]
@@ -45,7 +45,8 @@ class DeviceViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     
     def get_queryset(self):
         user = self.request.user
-
+        queryset = Device.objects.all()
+        """
         if user.user_type == 'SU':
             queryset = Device.objects.all()
         elif user.user_type == 'LV':
@@ -56,6 +57,7 @@ class DeviceViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
             queryset = Device.objects.all()                
         else:
             queryset = Device.objects.none()
+        """
         return queryset  
 
 

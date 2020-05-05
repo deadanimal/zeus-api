@@ -26,7 +26,7 @@ class ReportViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     def get_permissions(self):
-        permission_classes = [IsAuthenticated]
+        permission_classes = [AllowAny] #permission_classes = [IsAuthenticated]
         """
         if self.action == 'list':
             permission_classes = [IsAuthenticated]
@@ -38,7 +38,8 @@ class ReportViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     
     def get_queryset(self):
         user = self.request.user
-
+        queryset = Report.objects.all()
+        """
         if user.user_type == 'SU':
             queryset = Report.objects.all()
         elif user.user_type == 'LV':
@@ -48,7 +49,8 @@ class ReportViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         elif user.user_type == 'UT':
             queryset = Report.objects.all()                
         else:
-            queryset = Report.objects.none()        
+            queryset = Report.objects.none()  
+        """      
         return queryset  
           
 

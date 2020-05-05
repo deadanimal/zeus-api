@@ -28,7 +28,7 @@ class TicketViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     def get_permissions(self):
-        permission_classes = [IsAuthenticated]
+        permission_classes = [AllowAny] #permission_classes = [IsAuthenticated]
         """
         if self.action == 'list':
             permission_classes = [IsAuthenticated]
@@ -40,7 +40,8 @@ class TicketViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     
     def get_queryset(self):
         user = self.request.user
-
+        queryset = Ticket.objects.all()
+        """
         if user.user_type == 'SU':
             queryset = Ticket.objects.all()
         elif user.user_type == 'LV':
@@ -50,7 +51,8 @@ class TicketViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         elif user.user_type == 'UT':
             queryset = Ticket.objects.all()                
         else:
-            queryset = Ticket.objects.none()        
+            queryset = Ticket.objects.none()    
+        """    
         return queryset  
           
 
@@ -83,7 +85,7 @@ class TicketMessageViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     def get_permissions(self):
-        permission_classes = [IsAuthenticated]
+        permission_classes = [AllowAny] #permission_classes = [IsAuthenticated]
         """
         if self.action == 'list':
             permission_classes = [IsAuthenticated]
@@ -95,7 +97,8 @@ class TicketMessageViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     
     def get_queryset(self):
         user = self.request.user
-
+        queryset = TicketMessage.objects.all()
+        """
         if user.user_type == 'SU':
             queryset = TicketMessage.objects.all()
         elif user.user_type == 'LV':
@@ -105,5 +108,6 @@ class TicketMessageViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         elif user.user_type == 'UT':
             queryset = TicketMessage.objects.all()                
         else:
-            queryset = TicketMessage.objects.none()        
+            queryset = TicketMessage.objects.none() 
+        """       
         return queryset          

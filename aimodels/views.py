@@ -35,7 +35,7 @@ class AimodelViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     def get_permissions(self):
-        permission_classes = [IsAuthenticated]
+        permission_classes = [AllowAny] #permission_classes = [IsAuthenticated]
         """
         if self.action == 'list':
             permission_classes = [IsAuthenticated]
@@ -48,6 +48,8 @@ class AimodelViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
 
+        queryset = Aimodel.objects.all()  
+        """
         if user.user_type == 'SU':
             queryset = Aimodel.objects.all()
         elif user.user_type == 'LV':
@@ -58,7 +60,7 @@ class AimodelViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
             queryset = Aimodel.objects.all()                
         else:
             queryset = Aimodel.objects.none()        
-    
+        """
         return queryset  
 
 

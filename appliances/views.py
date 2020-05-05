@@ -44,7 +44,7 @@ class ApplianceViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     def get_permissions(self):
-        permission_classes = [IsAuthenticated]
+        permission_classes = [AllowAny]#[IsAuthenticated]
         """
         if self.action == 'list':
             permission_classes = [IsAuthenticated]
@@ -57,7 +57,8 @@ class ApplianceViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     def get_queryset(self):
 
         user = self.request.user
-
+        queryset = Appliance.objects.all()
+        """
         if user.user_type == 'SU':
             queryset = Appliance.objects.all()
         elif user.user_type == 'LV':
@@ -68,7 +69,7 @@ class ApplianceViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
             queryset = Appliance.objects.all()                
         else:
             queryset = Appliance.objects.none()
-        
+        """
         return queryset  
           
 
@@ -96,7 +97,7 @@ class ApplianceBaseViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     def get_permissions(self):
-        permission_classes = [IsAuthenticated]
+        permission_classes = [AllowAny]#[IsAuthenticated]
         """
         if self.action == 'list':
             permission_classes = [IsAuthenticated]
@@ -109,7 +110,8 @@ class ApplianceBaseViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     def get_queryset(self):
 
         user = self.request.user
-
+        queryset = ApplianceBase.objects.all()
+        """
         if user.user_type == 'SU':
             queryset = ApplianceBase.objects.all()
         elif user.user_type == 'LV':
@@ -120,7 +122,7 @@ class ApplianceBaseViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
             queryset = ApplianceBase.objects.all()                
         else:
             queryset = ApplianceBase.objects.none()
-
+        """
         return queryset  
 
 

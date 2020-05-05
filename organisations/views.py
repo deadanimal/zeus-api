@@ -28,7 +28,7 @@ class OrganisationViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     def get_permissions(self):
-        permission_classes = [IsAuthenticated]
+        permission_classes = [AllowAny] #permission_classes = [IsAuthenticated]
         """
         if self.action == 'list':
             permission_classes = [IsAuthenticated]
@@ -40,7 +40,8 @@ class OrganisationViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     
     def get_queryset(self):
         user = self.request.user
-
+        queryset = Organisation.objects.all()
+        """
         if user.user_type == 'SU':
             queryset = Organisation.objects.all()
         elif user.user_type == 'LV':
@@ -50,7 +51,8 @@ class OrganisationViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         elif user.user_type == 'UT':
             queryset = Organisation.objects.all()                
         else:
-            queryset = Organisation.objects.none()        
+            queryset = Organisation.objects.none()     
+        """   
         return queryset  
           
 
